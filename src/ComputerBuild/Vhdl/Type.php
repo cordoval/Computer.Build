@@ -7,7 +7,7 @@ class Type extends SingleLineStatement
     protected $name;
     protected $values;
 
-    public function initialize($name, $values)
+    public function __construct($name, $values)
     {
         $this->name = $name;
         $this->values = $values;

@@ -7,7 +7,7 @@ class Signal extends SingleLineStatement
     protected $id;
     protected $type;
 
-    public function initialize($id, $type)
+    public function __construct($id, $type)
     {
         $this->id = $id;
         $this->type = $type;
