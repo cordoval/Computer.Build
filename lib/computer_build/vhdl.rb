@@ -251,33 +251,6 @@ module VHDL
     end
   end
 
-  class Assignment < SingleLineStatement
-    def initialize(*args)
-      @assign = Assign.new(*args)
-    end
-
-    def line
-      @assign.generate + ";"
-    end
-  end
-
-  class Assign < InlineStatement
-    def initialize(*args)
-      if args.length == 2
-        @target = args[0]
-        @expression = args[1]
-      else
-        @target = args[0].to_s + "(#{args[1]})"
-        @expression = args[2].to_s + "(#{args[3]})"
-        @expression = @expression.to_sym
-      end
-    end
-    
-    def generate
-      "#{@target} <= #{quoted(@expression)}"
-    end
-  end
-
   class Equal < InlineStatement
     def initialize(target, expression)
       @target = target
