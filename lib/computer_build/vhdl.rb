@@ -45,12 +45,6 @@ module VHDL
       out.print "\n"
     end
   end
-  
-  class MultiLineStatement < Statement
-  end
-
-  class InlineStatement < Statement
-  end
 
   class Entity
     attr_reader :name
