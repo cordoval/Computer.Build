@@ -141,17 +141,6 @@ module VHDL
     end
   end
 
-  class Signal < SingleLineStatement
-    def initialize(id, type)
-      @id = id
-      @type = type
-    end
-
-    def line
-      "SIGNAL #{@id} : #{@type};"
-    end
-  end
-
   class Behavior
     include StatementBlock
 
