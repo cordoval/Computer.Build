@@ -127,17 +127,6 @@ module VHDL
     end
   end
 
-  class Type < SingleLineStatement
-    def initialize(name, values)
-      @name = name
-      @values = values
-    end
-
-    def line
-      "TYPE #{@name} IS ( #{@values.join(", ")} );"
-    end
-  end
-
   class Port < SingleLineStatement
     def initialize(id, direction, description)
       @id = id
