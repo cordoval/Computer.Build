@@ -251,17 +251,6 @@ module VHDL
     end
   end
 
-  class Equal < InlineStatement
-    def initialize(target, expression)
-      @target = target
-      @expression = expression
-    end
-    
-    def generate
-      "#{@target} = #{quoted(@expression)}"
-    end
-  end
-
   class Event < InlineStatement
     def initialize(target)
       @target = target
