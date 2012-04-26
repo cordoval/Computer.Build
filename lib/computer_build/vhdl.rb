@@ -127,20 +127,6 @@ module VHDL
     end
   end
 
-  class Port < SingleLineStatement
-    def initialize(id, direction, description)
-      @id = id
-      @direction = direction
-      @description = description
-    end
-    
-    def generate(out, indent, last)
-      out.print "  " * indent
-      out.print "#{@id}: #{@direction} #{@description}"
-      out.puts last ? '' : ';'
-    end
-  end
-
   class Behavior
     include StatementBlock
 
