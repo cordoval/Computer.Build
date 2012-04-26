@@ -38,24 +38,6 @@ module VHDL
     end
   end
 
-  class Statement
-    protected
-
-    def quoted(expression)
-      if expression.is_a? String
-        if expression.length == 1
-          return "'#{expression}'"
-        else
-          return "\"#{expression}\""
-        end
-      elsif expression.is_a? Fixnum
-        return "std_logic_vector(#{expression})"
-      else
-        return expression
-      end
-    end
-  end
-
   class SingleLineStatement < Statement
     def generate(out, indent)
       out.print "  " * indent
