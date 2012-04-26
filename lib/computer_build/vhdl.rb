@@ -158,18 +158,6 @@ module VHDL
     end
   end
 
-  class Instance < SingleLineStatement
-    def initialize(component, name, *ports)
-      @component = component
-      @name = name
-      @ports = ports
-    end
-
-    def line
-      "#{@name}: #{@component} PORT MAP(#{@ports.join(', ')});"
-    end
-  end
-
   class Process
     include StatementBlock
     def initialize(inputs, body)
