@@ -8,6 +8,10 @@ class SingleLineStatement extends Statement
     {
 	//
     }
+
+    /**
+     * @inherit
+     */
     public function generate($out, $indent)
     {
         for ($i = 0; $i <= $indent; $i++) {
