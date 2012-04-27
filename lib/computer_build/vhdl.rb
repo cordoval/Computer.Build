@@ -251,26 +251,6 @@ module VHDL
     end
   end
 
-  class Event < InlineStatement
-    def initialize(target)
-      @target = target
-    end
-
-    def generate
-      "#{@target.to_s}'EVENT"
-    end
-  end
-
-  class Invert < InlineStatement
-    def initialize(body)
-      @body = body
-    end
-
-    def generate
-      "NOT (#{@body})"
-    end
-  end
-
   class Block < MultiLineStatement
     include StatementBlock
 
@@ -328,18 +308,3 @@ class Symbol
   end
 end
 
-class Fixnum
-  def to_logic(width)
-    str = self.to_s(2)
-    return "0"*(width-str.length) + str
-  end
-end
-
-
-def generate_vhdl(entity, out=$stdout)
-  out.puts "LIBRARY ieee;"
-  out.puts "USE ieee.std_logic_1164.all;"
-  out.puts "USE ieee.numeric_std.all;"
-  out.puts
-  entity.generate(out)
-end

@@ -21,7 +21,7 @@ class Statement
             } else {
                 return "\"".$expression."\"";
             }
-        } elseif ($expression instanceof \int) {
+        } elseif ($expression instanceof Fixnum) {
                 return "std_logic_vector(".$expression.")";
         } else {
             return $expression;
