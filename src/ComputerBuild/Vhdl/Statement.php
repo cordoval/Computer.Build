@@ -17,7 +17,7 @@ class Statement
     {
         if ($expression instanceof \string) {
             if (strlen($expression) == 1) {
-                return "'$expression'";
+                return "'".$expression."'";
             } else {
                 return "\"".$expression."\"";
             }
