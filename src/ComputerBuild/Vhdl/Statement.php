@@ -2,8 +2,17 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Statement class
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class Statement
 {
+    /**
+     * quotes a vhdl string
+     * @param $expression
+     * @return string
+     */
     public function quoted($expression)
     {
         if ($expression instanceof \string) {
