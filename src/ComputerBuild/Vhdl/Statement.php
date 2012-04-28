@@ -15,14 +15,14 @@ class Statement
      */
     public function quoted($expression)
     {
-        if ($expression instanceof \string) {
+        if (is_string($expression)) {
             if (strlen($expression) == 1) {
                 return "'".$expression."'";
             } else {
                 return "\"".$expression."\"";
             }
         } elseif ($expression instanceof Fixnum) {
-                return "std_logic_vector(".$expression.")";
+                return "std_logic_vector(\"".$expression."\")";
         } else {
             return $expression;
         }
