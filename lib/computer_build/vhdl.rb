@@ -96,37 +96,6 @@ module VHDL
     end
   end
 
-  class Component < MultiLineStatement
-    def initialize(name)
-      @name = name
-      @ports = []
-      yield(self)
-    end
-
-    def in(name, type)
-      @ports << Port.new(name, :in, type)
-    end
-
-    def out(name, type)
-      @ports << Port.new(name, :out, type)
-    end
-
-    def inout(name, type)
-      @ports << Port.new(name, :inout, type)
-    end
-
-    def generate(out, indent)
-      prefix = "  " * indent
-      out.puts prefix + "COMPONENT #{@name}"
-      out.puts prefix + "PORT("
-      @ports.each_with_index do |port, index|
-        port.generate(out, indent+1, (index == @ports.length-1))
-      end
-      out.puts prefix + ");"
-      out.puts prefix + "END COMPONENT;"
-    end
-  end
-
   class Behavior
     include StatementBlock
 
