@@ -27,6 +27,12 @@ class StatementTest extends \PHPUnit_Framework_TestCase
         $expression = new AnotherTestClass();
         $this->assertEquals($expression, (new Statement())->quoted($expression));
     }
+
+    public function testItShouldTestForInteger()
+    {
+        $this->assertEquals(77, (new Statement())->quoted(77));
+        $this->assertEquals("\"77\"", (new Statement())->quoted("77"));
+    }
 }
 
 class AnotherTestClass
