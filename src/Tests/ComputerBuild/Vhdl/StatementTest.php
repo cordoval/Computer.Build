@@ -19,8 +19,7 @@ class StatementTest extends \PHPUnit_Framework_TestCase
 
     public function testItShouldWrapStdLogicVector()
     {
-        $expression = new Fixnum(5);
-        $this->assertEquals("std_logic_vector(\"00000101\")", (new Statement())->quoted($expression));
+        $this->assertEquals("std_logic_vector(\"00000101\")", (new Statement())->quoted(new Fixnum(5)));
     }
 
     public function testItShouldReturnTheSameExpressionIfNoneOfTheAbove()

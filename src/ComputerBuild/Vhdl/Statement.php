@@ -9,9 +9,9 @@ namespace ComputerBuild\Vhdl;
 class Statement
 {
     /**
-     * quotes a vhdl string
+     * quotes a vhdl expression
      * @param $expression
-     * @return string
+     * @return mixed
      */
     public function quoted($expression)
     {
