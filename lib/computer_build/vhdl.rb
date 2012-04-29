@@ -149,48 +149,6 @@ module VHDL
     end
   end
 
-
-# Global scope methods for creating stuff
-
-  module Helpers
-    def entity(name, &body)
-      VHDL::Entity.new(name, body)
-    end
-
-    def assign(target, expression)
-      VHDL::Assign.new(target, expression)
-    end
-
-    def high(target)
-      assign(target, '1')
-    end
-
-    def low(target)
-      assign(target, '0')
-    end
-
-    def equal(target, expression)
-      VHDL::Equal.new(target, expression)
-    end
-
-    def event(target)
-      VHDL::Event.new(target)
-    end
-
-    def block(&body)
-      VHDL::Block.new(body)
-    end
-
-    def subbits(sym, range)
-      "#{sym}(#{range.first} downto #{range.last})".to_sym
-    end
-
-    def invert(body)
-      VHDL::Invert.new(body)
-    end
-  end
-end
-
 # Monkeypatching
 class Symbol
   def <=(other)
