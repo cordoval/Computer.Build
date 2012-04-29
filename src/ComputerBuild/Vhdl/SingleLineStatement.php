@@ -6,10 +6,9 @@ class SingleLineStatement extends Statement
 {
     public function generate($out, $indent)
     {
-        for ($i = 0; $i <= $indent; $i++) {
-            $out->print("  ");
-        }
-        $out->print(parent::line());
+        $prefix = str_pad('', $indent, "  ");
+        $out->print($prefix);
+        $out->print($this->line());
         $out->print("\n");
     }
 }

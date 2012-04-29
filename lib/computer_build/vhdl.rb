@@ -9,43 +9,6 @@ module VHDL
     end
   end
 
-  module StatementBlock
-    def case(input, &body)
-      @statements << Case.new(input, body)
-    end
-
-    def if(*conditions, &body)
-      ifthenelse = If.new(conditions, body)
-      @statements << ifthenelse
-      return ifthenelse
-    end
-
-    def assign(*args)
-      @statements << Assignment.new(*args)
-    end
-
-    def high(target)
-      assign(target, '1')
-    end
-
-    def low(target)
-      assign(target, '0')
-    end
-
-    # Default generate, generally overridden
-    def generate(out, indent)
-      @statements.each {|s| s.generate(out, indent + 1)}
-    end
-  end
-
-  class SingleLineStatement < Statement
-    def generate(out, indent)
-      out.print "  " * indent
-      out.print self.line()
-      out.print "\n"
-    end
-  end
-
   class Entity
     attr_reader :name
     def initialize(name, body)
@@ -96,40 +59,6 @@ module VHDL
     end
   end
 
-  class Behavior
-    include StatementBlock
-
-    def initialize(body)
-      @statements = []
-      body.call(self)
-    end
-
-    def process(inputs, &body)
-      @statements << VHDL::Process.new(inputs, body)
-    end
-
-    def instance(*args)
-      @statements << Instance.new(*args)
-    end
-  end
-
-  class Process
-    include StatementBlock
-    def initialize(inputs, body)
-      @inputs = inputs
-      @statements = []
-      body[self]
-    end
-
-    def generate(out, indent)
-      prefix = "  " * indent
-      args = @inputs.map(&:to_s).join(',')
-      out.puts prefix + "PROCESS(#{args})"
-      out.puts prefix + "BEGIN"
-      @statements.each {|s| s.generate(out, indent + 1)}
-      out.puts prefix + "END PROCESS;"
-    end
-  end
 
   class Case
     def initialize(input, body)
@@ -220,14 +149,6 @@ module VHDL
     end
   end
 
-  class Block < MultiLineStatement
-    include StatementBlock
-
-    def initialize(body)
-      @statements = []
-      body.call(self)
-    end
-  end
 
 # Global scope methods for creating stuff
 

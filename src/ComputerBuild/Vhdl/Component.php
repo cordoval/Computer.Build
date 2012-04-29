@@ -16,22 +16,22 @@ class Component extends MultiLineStatement
 
     public function in($name, $type)
     {
-        $this->ports = new Port($name, "in", $type);
+        $this->ports[] = new Port($name, "in", $type);
     }
 
     public function out($name, $type)
     {
-        $this->ports = new Port($name, "out", $type);
+        $this->ports[] = new Port($name, "out", $type);
     }
 
     public function inout($name, $type)
     {
-        $this->ports = new Port($name, "inout", $type);
+        $this->ports[] = new Port($name, "inout", $type);
     }
 
     public function generate($out, $indent)
     {
-        $prefix = str_pad('', $ident, "  ");
+        $prefix = str_pad('', $indent, "  ");
         $out->print($prefix."COMPONENT ".$this->name);
         $out->print($prefix."PORT(");
         foreach ($this->ports as $index => $port) {
