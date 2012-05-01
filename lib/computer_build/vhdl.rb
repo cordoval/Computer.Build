@@ -9,57 +9,6 @@ module VHDL
     end
   end
 
-  class Entity
-    attr_reader :name
-    def initialize(name, body)
-      @name = name
-      @ports = []
-      @signals = []
-      @types = []
-      @components = []
-      body[self]
-    end
-
-    def port(*args)
-      @ports << Port.new(*args)
-    end
-
-    def signal(*args)
-      @signals << Signal.new(*args)
-    end
-
-
-    def behavior(&body)
-      @behavior = Behavior.new(body)
-    end
-
-    def type(*args)
-      @types << Type.new(*args)
-    end
-
-    def component(*args, &body)
-      @components << Component.new(*args, &body)
-    end
-
-    def generate(out=$stdout)
-      out.puts "ENTITY #{@name} IS"
-      out.puts "PORT("
-      @ports.each_with_index do |port, index|
-        port.generate(out, 1, (index == @ports.length-1))
-      end
-      out.puts ");"
-      out.puts "END #{@name};"
-      out.puts "ARCHITECTURE arch_#{@name} OF #{@name} IS"
-      @types.each {|t| t.generate(out, 1)}
-      @signals.each {|t| t.generate(out, 1)}
-      @components.each {|c| c.generate(out, 1)}
-      out.puts "BEGIN"
-      @behavior.generate(out, 1)
-      out.puts "END arch_#{@name};"
-    end
-  end
-
-
   class Case
     def initialize(input, body)
       @input = input
