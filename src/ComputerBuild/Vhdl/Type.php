@@ -2,12 +2,18 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Class to render single line statement
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ * @author Raul Rodriguez <raulrodriguez782@gmail.com>
+ */
 class Type extends SingleLineStatement
 {
     protected $name;
     protected $values;
 
-    public function __construct($name, $values)
+    public function __construct($name, array $values)
     {
         $this->name = $name;
         $this->values = $values;
@@ -15,12 +21,6 @@ class Type extends SingleLineStatement
 
     public function line()
     {
-        $valuesSeparatedWithComas = "";
-        foreach ($this->values as $key => $value) {
-            $separator = $last ? ", " : "";
-            $valuesSeparatedWithComas .= $this->values[$key].$separator;
-        }
-
-        return "TYPE ".$this->name." IS ( ".$valuesSeparatedWithComas." );";
+        return "TYPE ".$this->name." IS (".implode(', ', $this->values).");";
     }
 }
