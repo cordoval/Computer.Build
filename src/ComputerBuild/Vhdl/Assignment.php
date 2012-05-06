@@ -6,7 +6,7 @@ class Assignment extends SingleLineStatement
 {
     protected $assign;
 
-    public function __construct($args = null)
+    public function __construct($args)
     {
         $this->assign = new Assign($args);
     }

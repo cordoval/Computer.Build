@@ -2,6 +2,12 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Class to render signal statement
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ * @author Raul Rodriguez <raulrodriguez782@gmail.com>
+ */
 class Signal extends SingleLineStatement
 {
     protected $id;

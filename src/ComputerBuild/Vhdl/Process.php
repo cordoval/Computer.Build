@@ -9,20 +9,31 @@ use StatementTrait;
     protected $statements;
     protected $inputs;
 
-    public function __construct($inputs, $body)
+    public function __construct($inputs)
     {
         $this->inputs = $inputs;
         $this->statements = array();
-        $body[$this];
+    }
+
+    public function setStatements($statements)
+    {
+        $this->statements = $statements;
+    }
+
+    public function addStatement($statement)
+    {
+        $this->statements[] = $statement;
     }
 
     public function generate($out, $indent)
     {
         $prefix = str_pad('', $indent, "  ");
-        $args = $this->inputs->map(&:to_s).join(',');
+        $args = implode(', ', array_map('__toString', $this->inputs));
         $out->print($prefix."PROCESS(".$args.")");
         $out->print($prefix."BEGIN");
-        //$this->statements.each {|s| s.generate(out, indent + 1)}
+        foreach ($this->statements as $statement) {
+            $statement->generate($out, $indent+1);
+        }
         $out->print($prefix."END PROCESS;");
     }
 }
