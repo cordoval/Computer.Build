@@ -2,6 +2,11 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Class to render single line statement
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class SingleLineStatement extends Statement
 {
     public function generate($out, $indent)
@@ -11,4 +16,6 @@ class SingleLineStatement extends Statement
         $out->print($this->line());
         $out->print("\n");
     }
+
+    abstract function line();
 }

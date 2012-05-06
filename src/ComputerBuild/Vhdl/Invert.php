@@ -2,6 +2,12 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Class to inline a NOT ($body)
+ * $body is argument to be negated
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class Invert extends InlineStatement
 {
     protected $body;

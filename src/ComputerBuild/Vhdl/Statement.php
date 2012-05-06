@@ -3,7 +3,7 @@
 namespace ComputerBuild\Vhdl;
 
 /**
- * Statement class
+ * Base statement class
  * @author Luis Cordova <cordoval@gmail.com>
  */
 class Statement
