@@ -14,6 +14,9 @@ class GeneratedOutput
     protected $path = "";
     protected $fullfilename ="";
 
+    protected $outputMode;
+
+    const STD_OUT = 0;
     const NEWLINE = 0x0A;
     const CARRIAGE = 0x0D;
 
@@ -35,9 +38,9 @@ class GeneratedOutput
      */
     public function printLine($string)
     {
-        if ($this->outputMode == 'stdout') {
+        if ($this->outputMode == $this::STD_OUT) {
             echo $string;
-        } elseif ($this->outputMode == 'filesystem') {
+        } elseif ($this->outputMode == $this::FILE_SYSTEM) {
             $this->write($string);
         }
     }

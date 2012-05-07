@@ -38,4 +38,16 @@ trait StatementTrait
         //$this->statements
         //@statements.each {|s| s.generate(out, indent + 1)}
     }
+
+    public function custom()
+    {
+        def self.STD_LOGIC_VECTOR(range)
+if range.first > range.last
+return "STD_LOGIC_VECTOR(#{range.first} downto #{range.last})"
+else
+return "STD_LOGIC_VECTOR(#{range.first} upto #{range.last})"
+end
+end
+    }
+
 }

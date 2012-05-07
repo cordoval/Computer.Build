@@ -18,8 +18,13 @@ class Port extends SingleLineStatement
     public function generate($out, $indent, $last)
     {
         $prefix = str_pad('', $indent, "  ");
-        $out->print($prefix);
-        $out->print($this->id.": ".$this->direction." ".$this->description);
-        $out->print($last ? "": ";");
+        $out->printLine($prefix);
+        $out->printLine($this->id.": ".$this->direction." ".$this->description);
+        $out->printLine($last ? "": ";");
+    }
+
+    public function line()
+    {
+        return true;
     }
 }
