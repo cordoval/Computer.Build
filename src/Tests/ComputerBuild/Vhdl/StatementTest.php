@@ -2,8 +2,8 @@
 
 namespace Tests\ComputerBuild\Vhdl;
 
-use ComputerBuild\Vhdl\Statement;
 use ComputerBuild\Vhdl\Fixnum;
+use ComputerBuild\Vhdl\AbstractStatement;
 
 class StatementTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,6 +36,11 @@ class StatementTest extends \PHPUnit_Framework_TestCase
 }
 
 class AnotherTestClass
+{
+
+}
+
+class Statement extends AbstractStatement
 {
 
 }

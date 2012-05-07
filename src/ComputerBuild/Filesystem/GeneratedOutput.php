@@ -39,7 +39,6 @@ class GeneratedOutput
             echo $string;
         } elseif ($this->outputMode == 'filesystem') {
             $this->write($string);
-
         }
     }
 
