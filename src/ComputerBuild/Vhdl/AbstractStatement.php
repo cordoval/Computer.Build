@@ -6,7 +6,7 @@ namespace ComputerBuild\Vhdl;
  * Base statement class
  * @author Luis Cordova <cordoval@gmail.com>
  */
-abstract class Statement
+abstract class AbstractStatement
 {
     /**
      * quotes a vhdl expression
