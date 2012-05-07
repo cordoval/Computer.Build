@@ -7,7 +7,7 @@ namespace ComputerBuild\Vhdl;
  *
  * @author Luis Cordova <cordoval@gmail.com>
  */
-class InlineStatement extends Statement
+class InlineStatement extends AbstractStatement
 {
 
 }

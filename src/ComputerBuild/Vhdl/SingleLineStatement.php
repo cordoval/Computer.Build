@@ -7,7 +7,7 @@ namespace ComputerBuild\Vhdl;
  *
  * @author Luis Cordova <cordoval@gmail.com>
  */
-abstract class SingleLineStatement extends Statement
+abstract class SingleLineStatement extends AbstractStatement
 {
     public function generate($out, $indent)
     {
