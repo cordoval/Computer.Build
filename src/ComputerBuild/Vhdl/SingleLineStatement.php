@@ -2,6 +2,8 @@
 
 namespace ComputerBuild\Vhdl;
 
+use ComputerBuild\Filesystem\GeneratedOutput;
+
 /**
  * Class to render single line statement
  *
@@ -9,12 +11,12 @@ namespace ComputerBuild\Vhdl;
  */
 abstract class SingleLineStatement extends AbstractStatement
 {
-    public function generate($out, $indent)
+    public function generate(GeneratedOutput $out, $indent)
     {
         $prefix = str_pad('', $indent, "  ");
-        $out->print($prefix);
-        $out->print($this->line());
-        $out->print("\n");
+        $out->printLine($prefix);
+        $out->printLine($this->line());
+        $out->printLine("\n");
     }
 
     abstract function line();
