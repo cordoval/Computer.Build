@@ -2,6 +2,12 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Trait methods
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ * @author Danny Montalvo <danny.montalvo@gmail.com>
+ */
 trait StatementTrait
 {
     protected $statements;
@@ -39,15 +45,23 @@ trait StatementTrait
         //@statements.each {|s| s.generate(out, indent + 1)}
     }
 
-    public function custom()
+    /**
+     * std_logic_vector method
+     *
+     * @param $range array(top = integer, bottom = 0)
+     * @return string
+     */
+    public function stdLogicVector($range)
     {
-        def self.STD_LOGIC_VECTOR(range)
-if range.first > range.last
-return "STD_LOGIC_VECTOR(#{range.first} downto #{range.last})"
-else
-return "STD_LOGIC_VECTOR(#{range.first} upto #{range.last})"
-end
-end
+        $first = $range[0];
+        $last = $range[sizeof($range) - 1];
+        // e.g.: array(7,0)
+        // STD_LOGIC_VECTOR(0 upto 7);
+        // STD_LOGIC_VECTOR(7 downto 0);
+        if ($first > $last) {
+            return "STD_LOGIC_VECTOR(".$first." downto ".$last.")";
+        } else {
+            return "STD_LOGIC_VECTOR(".$first." upto ".$last.")";
+        }
     }
-
 }

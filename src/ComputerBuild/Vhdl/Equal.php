@@ -2,6 +2,8 @@
 
 namespace ComputerBuild\Vhdl;
 
+use ComputerBuild\Filesystem\GeneratedOutput;
+
 class Equal extends InlineStatement
 {
     protected $target;
@@ -13,8 +15,8 @@ class Equal extends InlineStatement
         $this->expression = $expression;
     }
 
-    public function generate()
+    public function generate(GeneratedOutput $out)
     {
-        return $this->target." = ".$this->quoted($this->expression);
+        $out->printLine($this->target." = ".$this->quoted($this->expression));
     }
 }

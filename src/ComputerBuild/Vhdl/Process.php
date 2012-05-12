@@ -2,6 +2,8 @@
 
 namespace ComputerBuild\Vhdl;
 
+use ComputerBuild\Filesystem\GeneratedOutput;
+
 class Process
 {
 use StatementTrait;
@@ -25,15 +27,15 @@ use StatementTrait;
         $this->statements[] = $statement;
     }
 
-    public function generate($out, $indent)
+    public function generate(GeneratedOutput $out, $indent)
     {
         $prefix = str_pad('', $indent, "  ");
         $args = implode(', ', array_map('__toString', $this->inputs));
-        $out->print($prefix."PROCESS(".$args.")");
-        $out->print($prefix."BEGIN");
+        $out->printLine($prefix."PROCESS(".$args.")");
+        $out->printLine($prefix."BEGIN");
         foreach ($this->statements as $statement) {
             $statement->generate($out, $indent+1);
         }
-        $out->print($prefix."END PROCESS;");
+        $out->printLine($prefix."END PROCESS;");
     }
 }

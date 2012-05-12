@@ -7,6 +7,7 @@ namespace ComputerBuild\Filesystem;
  *
  * @author Luis Cordova <cordoval@gmail.com>
  * @author Raul Rodriguez <raulrodriguez782@gmail.com>
+ * @author
  */
 class GeneratedOutput
 {
@@ -17,8 +18,7 @@ class GeneratedOutput
     protected $outputMode;
 
     const STD_OUT = 0;
-    const NEWLINE = 0x0A;
-    const CARRIAGE = 0x0D;
+    const FILE_SYSTEM = 1;
 
     /*
     * Pass name of file
@@ -30,20 +30,12 @@ class GeneratedOutput
             $this->filename = $filename;
             $this->path = $path;
             $this->fullfilename = $path.$filename;
+            $this->outputMode = self::FILE_SYSTEM;
+        } else {
+            $this->outputMode = self::STD_OUT;
         }
     }
 
-    /**
-     * Print line to either stderror or to file
-     */
-    public function printLine($string)
-    {
-        if ($this->outputMode == $this::STD_OUT) {
-            echo $string;
-        } elseif ($this->outputMode == $this::FILE_SYSTEM) {
-            $this->write($string);
-        }
-    }
 
     /*
      * Get filename
@@ -83,54 +75,31 @@ class GeneratedOutput
         }
     }
 
+
+    /**
+     * Print line to either stderror or to file
+     */
+    public function printLine($string)
+    {
+        if ($this->outputMode == self::STD_OUT) {
+            fwrite(STDOUT, $string . "\n");
+        } elseif ($this->outputMode == self::FILE_SYSTEM) {
+            $this->write($string);
+        }
+    }
+
     public function write($text, $mode = "w+")
     {
-        if ($this->is__writable($this->path)) {
-            if (!$handle = fopen($this->fullfilename, $mode)){
-                echo "Cannot open file ($this->fullfilename)";
-                exit;
-            }
-
-            if (fwrite($handle, $text) === FALSE) {
-                echo "Cannot write to file ($this->fullfilename)";
-                exit;
-            }
-
-            $echo = "Success, wrote ($text) to file ($this->fullfilename)";
-
-            fclose($handle);
-        } else {
-            echo "The file $this->fullfilename is not writable";
-        }
-    }
-
-    /**
-     * Get Content of a Plain File
-     */
-    public function getContents()
-    {
-        return file_get_contents($this->fullfilename);
-    }
-
-    /**
-     * Checks if Directory has written permission
-     */
-    private function is__writable($path) {
-
-        if ($path{strlen($path)-1}=='/')
-            return $this->is__writable($path.uniqid(mt_rand()).'.tmp');
-
-        if (file_exists($path)) {
-            if (!($f = @fopen($path, 'r+')))
-                return false;
-            fclose($f);
-            return true;
+        if (!$handle = fopen($this->fullfilename, $mode)){
+            echo "Cannot open file ($this->fullfilename)";
+            exit;
         }
 
-        if (!($f = @fopen($path, 'w')))
-            return false;
-        fclose($f);
-        unlink($path);
-        return true;
+        if (fwrite($handle, $text) === FALSE) {
+            echo "Cannot write to file ($this->fullfilename)";
+            exit;
+        }
+        fclose($handle);
     }
+
 }
