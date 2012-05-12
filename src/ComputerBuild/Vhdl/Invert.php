@@ -2,6 +2,8 @@
 
 namespace ComputerBuild\Vhdl;
 
+use ComputerBuild\Filesystem\GeneratedOutput;
+
 /**
  * Class to inline a NOT ($body)
  * $body is argument to be negated
@@ -17,8 +19,8 @@ class Invert extends InlineStatement
         $this->body = $body;
     }
 
-    public function generate()
+    public function generate($out)
     {
-        return "NOT (".$this->body.")";
+        $out->printLine("NOT (".$this->body.")");
     }
 }
