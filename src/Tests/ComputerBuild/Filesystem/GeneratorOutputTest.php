@@ -20,7 +20,6 @@ class GeneratedOutputTest extends \PHPUnit_Framework_TestCase
         $actualOutput = ob_get_contents();
         ob_end_clean();
 
-        var_export($actualOutput);
         // assert it works!
         $this->assertEquals($expectedOutput, $actualOutput);
     }
