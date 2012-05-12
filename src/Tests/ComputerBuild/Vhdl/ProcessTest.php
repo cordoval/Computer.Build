@@ -6,7 +6,7 @@ use ComputerBuild\Vhdl\Process;
 use ComputerBuild\Vhdl\Statement;
 use ComputerBuild\Filesystem\GeneratedOutput;
 use ComputerBuild\Vhdl\Assignment;
-use ComputerBuild\Vhdl\Symbol;
+use ComputerBuild\Vhdl\Port;
 
 class ProcessTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,14 +15,13 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
         //$this->markTestIncomplete('pending');
 
         $inputs = array(
-            new Symbol('i1'),
-            new Symbol('i2'),
-            new Symbol('i3'),
-            new Symbol('o1'),
+            new Port('i1', '', 'std_logic'),
+            new Port('i2', '', 'std_logic'),
+            new Port('i3', '', 'std_logic'),
+            new Port('o1', '', 'std_logic'),
         );
 
         ob_start();
-
         $processBlock = new Process($inputs);
         $firstStatement = new Assignment(array('sig1', '0'));
         $secondStatement = new Assignment(array('sig2', '1'));

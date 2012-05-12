@@ -31,7 +31,7 @@ use StatementTrait;
     {
         $prefix = str_pad('', $indent, "  ");
         $serializedInputs = array_map( function($input) {  return $input->__toString(); }, $this->inputs);
-        $args = implode(', ', $serializedInputs);
+        $args = implode(",", $serializedInputs);
         $out->printLine($prefix."PROCESS(".$args.")");
         $out->printLine($prefix."BEGIN");
         foreach ($this->statements as $statement) {
