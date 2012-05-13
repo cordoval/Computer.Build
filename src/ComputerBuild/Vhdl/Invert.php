@@ -9,6 +9,7 @@ use ComputerBuild\Filesystem\GeneratedOutput;
  * $body is argument to be negated
  *
  * @author Luis Cordova <cordoval@gmail.com>
+ * @author Carlos Salvatierra <cslucano@gmail.com>
  */
 class Invert extends InlineStatement
 {
