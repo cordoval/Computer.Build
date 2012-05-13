@@ -14,9 +14,7 @@ abstract class SingleLineStatement extends AbstractStatement
     public function generate(GeneratedOutput $out, $indent)
     {
         $prefix = str_pad('', $indent, "  ");
-        $out->printLine($prefix);
-        $out->printLine($this->line());
-        $out->printLine("\n");
+        $out->printLine($prefix.$this->line());
     }
 
     abstract function line();

@@ -83,7 +83,7 @@ class GeneratedOutput
     {
         if ($this->outputMode == self::STD_OUT) {
             //fwrite(STDOUT, $string . "\n");
-            echo $string;
+            echo $string."\n";
         } elseif ($this->outputMode == self::FILE_SYSTEM) {
             $this->write($string);
         }

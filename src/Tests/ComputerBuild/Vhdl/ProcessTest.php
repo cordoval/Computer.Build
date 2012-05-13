@@ -6,19 +6,17 @@ use ComputerBuild\Vhdl\Process;
 use ComputerBuild\Vhdl\Statement;
 use ComputerBuild\Filesystem\GeneratedOutput;
 use ComputerBuild\Vhdl\Assignment;
-use ComputerBuild\Vhdl\Port;
+use ComputerBuild\Vhdl\Symbol;
 
 class ProcessTest extends \PHPUnit_Framework_TestCase
 {
     public function testProcessBlock()
     {
-        //$this->markTestIncomplete('pending');
-
         $inputs = array(
-            new Port('i1', '', 'std_logic'),
-            new Port('i2', '', 'std_logic'),
-            new Port('i3', '', 'std_logic'),
-            new Port('o1', '', 'std_logic'),
+            new Symbol('i1'),
+            new Symbol('i2'),
+            new Symbol('i3'),
+            new Symbol('o1'),
         );
 
         ob_start();
@@ -27,16 +25,11 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
         $secondStatement = new Assignment(array('sig2', '1'));
         $processBlock->setStatements(array($firstStatement, $secondStatement));
         $expectedOutput = <<<EOF
-PROCESS (
-    i1: std_logic;
-    i2: std_logic;
-    i3: std_logic;
-    o1: std_logic;
-)
+PROCESS(i1, i2, i3, o1)
 BEGIN
-    sig1 <= '0';
-    sig2 <= '1';
-END PROCESS
+ sig1 <= '0';
+ sig2 <= '1';
+END PROCESS;\n
 EOF;
        $out = new GeneratedOutput();
        $processBlock->generate($out, 0);
