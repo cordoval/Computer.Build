@@ -17,6 +17,11 @@ class Instance extends SingleLineStatement
 
     public function line()
     {
+    }
+
+    public function generate()
+    {
+        $concatenatedPorts = implode(",", $this->ports);
         return $this->name.": ".$this->component." PORT MAP(".$concatenatedPorts.");";
     }
 }
