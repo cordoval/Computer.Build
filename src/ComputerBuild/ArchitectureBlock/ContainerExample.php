@@ -32,3 +32,7 @@ class ContainerExample
         $out->printLine('Something');
     }
 }
+
+class Adder() {
+
+}

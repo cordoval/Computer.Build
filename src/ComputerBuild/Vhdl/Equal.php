@@ -15,8 +15,12 @@ class Equal extends InlineStatement
         $this->expression = $expression;
     }
 
-    public function generate(GeneratedOutput $out)
+    /**
+     * goal of generate:
+     * syntactically correct implementation
+     */
+    public function generate()
     {
-        $out->printLine($this->target." = ".$this->quoted($this->expression));
+        return $this->target." = ".$this->quoted($this->expression);
     }
 }

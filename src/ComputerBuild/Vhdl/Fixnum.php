@@ -4,6 +4,7 @@ namespace ComputerBuild\Vhdl;
 
 class Fixnum
 {
+    const BUS_WIDTH = 8;
     protected $number;
     protected $binary;
 
@@ -26,8 +27,13 @@ class Fixnum
         return $zeros.$str;
     }
 
+    /**
+     * serializing Fixnum to a specific hardware implemtation
+     *
+     * @return string
+     */
     public function __toString()
     {
-        return $this->toLogic(8);
+        return $this->toLogic(self::BUS_WIDTH);
     }
 }
