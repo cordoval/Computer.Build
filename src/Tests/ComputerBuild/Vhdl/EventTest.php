@@ -4,6 +4,9 @@ namespace Tests\ComputerBuild\Vhdl;
 
 use ComputerBuild\Vhdl\Event;
 
+/**
+ * @author
+ */
 class EventTest extends \PHPUnit_Framework_TestCase
 {
     public function testEventShouldReturnclk1Event()

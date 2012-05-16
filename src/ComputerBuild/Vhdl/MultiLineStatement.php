@@ -2,8 +2,12 @@
 
 namespace ComputerBuild\Vhdl;
 
-
-class MultiLineStatement extends Statement
+/**
+ * Multiline statement class
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
+class MultiLineStatement extends AbstractStatement
 {
 
 }

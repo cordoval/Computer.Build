@@ -20,8 +20,8 @@ class Invert extends InlineStatement
         $this->body = $body;
     }
 
-    public function generate($out)
+    public function generate()
     {
-        $out->printLine("NOT (".$this->body.")");
+        return "NOT (".$this->body.")";
     }
 }

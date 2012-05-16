@@ -2,6 +2,9 @@
 
 namespace ComputerBuild\ArchitectureBlock;
 
+/**
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class ContainerExample
 {
     public function __construct()
