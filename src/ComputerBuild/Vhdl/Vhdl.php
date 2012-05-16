@@ -4,11 +4,15 @@ namespace ComputerBuild\Vhdl;
 
 class Vhdl
 {
-    public function generate_vhdl($entity, $out)
+    protected $entity;
+
+    public function __construct($entity)
     {
-        $out->print("LIBRARY ieee;");
-        $out->print("USE ieee.std_logic_1164.all;");
-        $out->print("USE ieee.numeric_std.all;");
-        $entity->generate($out);
+        $this->entity = $entity;
+    }
+
+    public function generate()
+    {
+        return "LIBRARY ieee;\n"."USE ieee.std_logic_1164.all;\n"."USE ieee.numeric_std.all;\n".$this->entity->generate();
     }
 }
