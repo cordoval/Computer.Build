@@ -2,25 +2,29 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * Behavior of entity
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class Behavior
 {
     use StatementTrait;
 
     protected $statements;
 
-    public function __construct($body)
+    public function __construct()
     {
         $this->statements = array();
-        $body->call($this);
     }
 
-    public function process($inputs, $body)
+    public function addProcess($inputs)
     {
-        return $this->statements[] = new Process($inputs, $body);
+        return $this->statements[] = new Process($inputs);
     }
 
-    public function instance($args = null)
+    public function addInstance($component, $name, $ports)
     {
-        return $this->statements[] = new Instance($args = null);
+        return $this->statements[] = new Instance($component, $name, $ports);
     }
 }
