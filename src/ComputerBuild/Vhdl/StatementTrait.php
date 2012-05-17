@@ -39,10 +39,13 @@ trait StatementTrait
         return new Assign($target, 0);
     }
 
-    public function generate($out, $indent)
+    public function generate($indent)
     {
-        //$this->statements
-        //@statements.each {|s| s.generate(out, indent + 1)}
+        $output = "";
+        foreach($this->statements as $statement) {
+            $output .= $statement->generate($indent);
+        }
+        return $output;
     }
 
     /**

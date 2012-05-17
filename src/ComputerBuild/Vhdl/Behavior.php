@@ -11,8 +11,6 @@ class Behavior
 {
     use StatementTrait;
 
-    protected $statements;
-
     public function __construct()
     {
         $this->statements = array();
@@ -26,5 +24,15 @@ class Behavior
     public function addInstance($component, $name, $ports)
     {
         return $this->statements[] = new Instance($component, $name, $ports);
+    }
+
+    public function getStatements()
+    {
+        return $this->getStatements();
+    }
+
+    public function setStatements($statements)
+    {
+        $this->statements = $statements;
     }
 }
