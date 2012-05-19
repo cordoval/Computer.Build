@@ -7,6 +7,10 @@ namespace ComputerBuild\ArchitectureBlock;
  */
 class ContainerExample
 {
+    /**
+     * This class will wire 2 adders and a comparator automatically
+     * over using Dependency Injection
+     */
     public function __construct()
     {
         // define blocks
