@@ -1,4 +1,12 @@
-Computer.Build is a tool for generating VHDL hardware descriptions of
-microprocessors using a high-level domain-specific language. It is implemented
-in both Ruby and Clojure as a case study in the metaprogramming facilities
-of the two languages.
+This project is a fork of Computer.Build.
+
+Initially the former Computer.Build project was a tool for generating VHDL
+hardware descriptions of microprocessors using a high-level domain-specific
+language. It is implemented in both Ruby and Clojure as a case study in the
+metaprogramming facilities of the two languages.
+
+This fork is intended to be a complete framework for rapid hardware development.
+We envision broader architectures not confined to processor-based architectures.
+
+You are most welcome to contribute to this interesting project.
+
