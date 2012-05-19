@@ -7,7 +7,7 @@ use ComputerBuild\Vhdl\Equal;
 
 class GeneratedOutputTest extends \PHPUnit_Framework_TestCase
 {
-    public function testShouldGenerateOutputOnStdOut()
+    public function xtestShouldGenerateOutputOnStdOut()
     {
         // setup generation
         $equalObject = new Equal('signal22', '0');

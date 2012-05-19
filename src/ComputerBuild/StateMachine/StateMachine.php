@@ -1,17 +1,24 @@
 <?php
 
-namespace
+namespace ComputerBuild\Vhdl;
 
-require 'computer_build/vhdl'
-
+/**
+ * Class StateMachine
+ */
 class StateMachine
 {
-    use StatementTrait;
+    use StatementTrait, VHDLHelpersTrait;
 
     public function __construct($name)
     {
         $this->name = $name;
         $this->statements = array();
+        $this->inputs = array();
+        $this->outputs = array();
+        $this->inouts = array();
+        $this->signals = array();
+        $this->states = array();
+        $this->transitions = array();
     }
 
     public function setStatements($statements)
@@ -33,41 +40,19 @@ class StateMachine
     {
         return "state_".$shortName;
     }
+
+    public function setInputs($rest) {
+        $this->inputs = $rest;
+    }
+
+    public function 
+    @outputs = rest
+end
+    public function outputs(name, type)
+
+        @inputs << [name, type]
 }
-
-class Transition
-attr_reader :from, :to, :condition
-def initialize(options)
-@from = options[:from]
-@to = options[:to]
-@condition = options[:condition] || options[:on]
-end
-end
-
-class StateMachine
-include VHDL::Helpers
-def initialize(name, body)
-@name = name
-@inputs = []
-@outputs = []
-@inouts = []
-@signals = []
-@states = []
-@transitions = []
-body[self]
-end
-
-def inputs(*rest)
-@inputs = rest
-end
-
-def input(name, type)
-@inputs << [name, type]
-end
-
-def outputs(*rest)
-@outputs = rest
-end
+}
 
 def output(name, type)
 @outputs << [name, type]

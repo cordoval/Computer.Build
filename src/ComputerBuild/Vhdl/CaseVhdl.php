@@ -7,34 +7,43 @@ class CaseVhdl
     protected $input;
     protected $body;
 
-    public function __construct($input, $body)
+    public function __construct($input)
     {
         $this->input = $input;
         $this->conditions = array();
-        $body->call($this->conditions);
     }
 
-    public function generate($out, $indent)
+    public function setCondition($condition)
+    {
+        $this->conditions[] = $condition;
+    }
+
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    public function generate($indent)
     {
         $prefix = str_pad('', $indent, "  ");
-        $out->print($prefix."CASE ".$this->input." IS");
+        $output = $prefix."CASE ".$this->input." IS";
         foreach ($this->conditions as $conditionPair) {
             list($condition, $expression) = $conditionPair;
-            $out->print($prefix."  WHEN ");
+            $output .= $prefix."  WHEN ";
             if (preg_match('/^\d$/', $condition)) {
-                $out->print("'".$condition."'");
+                $output .= "'".$condition."'";
             } elseif (preg_match('/^\d+$/', $condition)) {
-                $out->print("\"".$condition."\"");
+                $output .= "\"".$condition."\"";
             } else {
-                $out->print($condition);
+                $output .= $condition;
             }
-            $out->print(" =>");
+            $out .= " =>";
             if ($expression instanceof InlineStatement) {
-                $out->print($expression->generate());
+                $out .= $expression->generate();
             } else {
-                $out->print($expression->generate($out, $indent+1));
+                $expression->generate($indent+1);
             }
         }
-        $out->print($prefix."END CASE;");
+        $prefix."END CASE;";
     }
 }
