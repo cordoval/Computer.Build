@@ -45,7 +45,7 @@ class StateMachine
         $this->inputs = $rest;
     }
 
-    public function 
+    public function
     @outputs = rest
 end
     public function outputs(name, type)

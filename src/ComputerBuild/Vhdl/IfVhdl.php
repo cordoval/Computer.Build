@@ -2,6 +2,11 @@
 
 namespace ComputerBuild\Vhdl;
 
+/**
+ * If VHDL statement class
+ *
+ * @author Luis Cordova <cordoval@gmail.com>
+ */
 class IfVhdl extends MultiLineStatement
 {
     use StatementTrait;
