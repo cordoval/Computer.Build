@@ -2,6 +2,10 @@
 
 namespace ComputerBuild\ArchitectureBlock;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
 /**
  * @author Luis Cordova <cordoval@gmail.com>
  */
@@ -13,25 +17,54 @@ class ContainerExample
      */
     public function __construct()
     {
-        // define blocks
-        $adder1 = new Adder();
-        $adder2 = new Adder();
-        $comparator = new Comparator();
+        $container = new ContainerBuilder();
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__));
+        $loader->load('booting.yml');
 
-        $container1 = new ContainerBlock();
-        // architecture @todo turn this perhaps into a yaml file?
-        // or better way of wiring things
+        // @mytodo work on Configurator.php
+        /**
+         * services:
+         *      adder:
+         *          class: Adder
+         *          wireStrategy: ~
+         *      comparator:
+         *          class: Adder
+         *          wireStrategy: ~
+         */
 
-        $container1->setArchitecture($adder1, $adder2, $comparator);
-        $container1->wireUpIn($adder1, 'i1');
-        $container1->wireUpIn($adder1, 'i2');
-        $container1->wireUpIn($adder2, 'i2');
-        $container1->wireUpIn($adder2, 'i3');
-        $container1->wireUpOutIn($comparator, $adder1);
-        $container1->wireUpOutIn($comparator, $adder2);
+        /* we are going to move this to configuration #1 */
+        $container->register('adder.factory', 'FactoryAdder');
+        $container->register('comparator.factory', 'FactoryComparator');
+        $container->register('wiring', 'WiringService');
 
-        // now we can encapsulate container2
-        return $container1;
+        $adder1 = $container->get('adder.factory')->create();
+        $adder2 = $container->get('adder.factory')->create();
+        $comparator = $container->get('comparator.factory')->create();
+        $wiring = $container->get('wiring');
+        /* we are going to move this to configuration */
+
+        /**
+         *  horizontal reuse of components injected
+         *  automation in wiring things up
+         *
+         *           output
+         *              |
+         *         comparator
+         *          |      |
+         *        adder1  adder2
+         *        |  |    |  |
+         *       i1  i2  i3  i4
+         */
+
+        $wiring->wireUp($adder1, $comparator);
+        $wiring->wireUp($adder2, $comparator);
+        $wiring->wireUp('i1', $adder1);
+        $wiring->wireUp('i2', $adder1);
+        $wiring->wireUp('i3', $adder2);
+        $wiring->wireUp('i4', $adder2);
+        $wiring->wireUp($comparator, 'o1');
+
+        return $container;
     }
 
     public function generate(GeneratedOutput $out)
@@ -40,6 +73,58 @@ class ContainerExample
     }
 }
 
-class Adder() {
+/**
+ * FactoryAdder class
+ */
+class FactoryAdder()
+{
 
+}
+
+/**
+ * Default implementation of an adder
+ */
+class Adder()
+{
+
+}
+
+/**
+ * FactoryComparator class
+ */
+class FactoryComparator()
+{
+
+}
+
+class Comparator()
+{
+
+}
+
+/**
+ * Default wiring service
+ */
+class WiringService implements WiringServiceInterface
+{
+    public function wireUp($source, $target)
+    {
+
+    }
+}
+
+interface WiringServiceInterface
+{
+    public function wireUp($source, $target);
+}
+
+/**
+ * Smarter wiring service
+ */
+class SmarterWiringService implements WiringServiceInterface
+{
+    public function wireUp($source, $target)
+    {
+
+    }
 }
