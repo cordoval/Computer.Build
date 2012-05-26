@@ -36,6 +36,7 @@ class ContainerExample
         $container->register('adder.factory', 'FactoryAdder');
         $container->register('comparator.factory', 'FactoryComparator');
         $container->register('wiring', 'WiringService');
+        $container->register('adder.factory', 'FactoryAdder');
 
         $adder1 = $container->get('adder.factory')->create();
         $adder2 = $container->get('adder.factory')->create();
