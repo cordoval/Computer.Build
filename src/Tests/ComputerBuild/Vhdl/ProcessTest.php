@@ -19,7 +19,6 @@ class ProcessTest extends \PHPUnit_Framework_TestCase
             new Symbol('o1'),
         );
 
-        ob_start();
         $processBlock = new Process($inputs);
         $firstStatement = new Assignment(array('sig1', '0'));
         $secondStatement = new Assignment(array('sig2', '1'));
@@ -31,10 +30,7 @@ BEGIN
  sig2 <= '1';
 END PROCESS;\n
 EOF;
-       $out = new GeneratedOutput();
-       $processBlock->generate();
-       $actualOutput = ob_get_contents();
-       ob_clean();
+       $actualOutput = $processBlock->generate();
        $this->assertEquals($expectedOutput, $actualOutput);
     }
 }

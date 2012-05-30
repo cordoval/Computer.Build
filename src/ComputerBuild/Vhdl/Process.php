@@ -27,16 +27,17 @@ use StatementTrait;
         $this->statements[] = $statement;
     }
 
-    public function generate(GeneratedOutput $out, $indent)
+    public function generate()
     {
-        $prefix = str_pad('', $indent, "  ");
-	$serializedInputs = array_map(function($input) { return $input->__toString(); }, $this->inputs);
+    	$serializedInputs = array_map(function($input) { return $input->__toString(); }, $this->inputs);
         $args = implode(", ", $serializedInputs);
-        $out->printLine($prefix."PROCESS(".$args.")");
-        $out->printLine($prefix."BEGIN");
+        $out = "PROCESS(".$args.")\n";
+        $prefix = " ";
+        $out .= "BEGIN\n";
         foreach ($this->statements as $statement) {
-            $statement->generate($out, $indent+1);
+            $out .= $prefix.$statement->generate()."\n";
         }
-        $out->printLine($prefix."END PROCESS;");
+        $out .= "END PROCESS;\n";
+	return $out;
     }
 }
