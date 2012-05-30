@@ -15,10 +15,6 @@ class Instance extends SingleLineStatement
         $this->ports = $ports;
     }
 
-    public function line()
-    {
-    }
-
     public function generate()
     {
         $concatenatedPorts = implode(",", $this->ports);

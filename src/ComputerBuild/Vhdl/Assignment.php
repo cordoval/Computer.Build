@@ -11,7 +11,7 @@ class Assignment extends SingleLineStatement
         $this->assign = new Assign($args);
     }
 
-    public function line()
+    public function generate()
     {
         return $this->assign->generate().";";
     }

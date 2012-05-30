@@ -19,7 +19,7 @@ class Type extends SingleLineStatement
         $this->values = $values;
     }
 
-    public function line()
+    public function generate()
     {
         return "TYPE ".$this->name." IS (".implode(', ', $this->values).");";
     }

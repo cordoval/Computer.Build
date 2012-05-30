@@ -15,15 +15,8 @@ class Port extends SingleLineStatement
         $this->description = $description;
     }
 
-    public function generate($indent, $last)
+    public function generate()
     {
-        $prefix = str_pad('', $indent, "  ");
-        $semiColonOrNull = $last ? "": ";";
-        return $prefix.$this->id.": ".$this->direction." ".$this->description.$semiColonOrNull;
-    }
-
-    public function line()
-    {
-        return true;
+        return $this->id.": ".$this->direction." ".$this->description;
     }
 }

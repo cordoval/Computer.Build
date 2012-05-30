@@ -9,6 +9,6 @@ class SignalTest extends \PHPUnit_Framework_TestCase
     public function testSignalStatement()
     {
         $signalStatement = new Signal('wire1', 'std_logic');
-        $this->assertEquals("SIGNAL wire1 : std_logic;", $signalStatement->line());
+        $this->assertEquals("SIGNAL wire1 : std_logic;", $signalStatement->generate());
     }
 }

@@ -19,7 +19,7 @@ class Signal extends SingleLineStatement
         $this->type = $type;
     }
 
-    public function line()
+    public function generate()
     {
         return "SIGNAL ".$this->id." : ".$this->type.";";
     }

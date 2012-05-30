@@ -32,7 +32,7 @@ BEGIN
 END PROCESS;\n
 EOF;
        $out = new GeneratedOutput();
-       $processBlock->generate($out, 0);
+       $processBlock->generate();
        $actualOutput = ob_get_contents();
        ob_clean();
        $this->assertEquals($expectedOutput, $actualOutput);
