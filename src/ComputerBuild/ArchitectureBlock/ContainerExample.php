@@ -77,30 +77,12 @@ class ContainerExample
 /**
  * FactoryAdder class
  */
-class FactoryAdder()
+class FactoryAdder
 {
+    public function create()
+    {
 
-}
-
-/**
- * Default implementation of an adder
- */
-class Adder()
-{
-
-}
-
-/**
- * FactoryComparator class
- */
-class FactoryComparator()
-{
-
-}
-
-class Comparator()
-{
-
+    }
 }
 
 /**
