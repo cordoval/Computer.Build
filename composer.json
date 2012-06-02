@@ -9,7 +9,8 @@
         "behat/behat": ">=2.2.2",
         "behat/mink":  ">=1.3.2",
         "symfony/filesystem": "dev-master",
-        "symfony/dependency-injection": "dev-master"
+        "symfony/dependency-injection": "dev-master",
+        "symfony/config" : "dev-master"
     },
     "config": {
         "bin-dir": "."

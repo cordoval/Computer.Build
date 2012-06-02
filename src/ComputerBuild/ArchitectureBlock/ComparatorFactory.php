@@ -3,12 +3,12 @@
 namespace ComputerBuild\ArchitectureBlock;
 
 /**
-* FactoryComparator class
+* ComparatorFactory class
 */
-class FactoryComparator
+class ComparatorFactory
 {
     public function create()
     {
-        return new Comparator()
+        return new Comparator();
     }
 }

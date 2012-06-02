@@ -1,0 +1,14 @@
+parameters:
+    factory.adder.class: ComputerBuild\ArchitectureBlock\AdderFactory
+    factory.comparator.class: ComputerBuild\ArchitectureBlock\ComparatorFactory
+    wiring.service.class: ComputerBuild\ArchitectureBlock\WiringService
+
+services:
+    adder.factory:
+        class: %factory.adder.class%
+        wireStrategy: ~
+    comparator.factory:
+        class: %factory.comparator.class%
+        wireStrategy: ~
+    wiring:
+        class: %wiring.service.class%

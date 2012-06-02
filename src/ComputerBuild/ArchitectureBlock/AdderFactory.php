@@ -2,11 +2,11 @@
 
 namespace ComputerBuild\ArchitectureBlock;
 
-class FactoryAdder
+class AdderFactory
 {
     public static function getInstance()
     {
-        return new FactoryAdder();
+        return new AdderFactory();
     }
 
     public function create()
