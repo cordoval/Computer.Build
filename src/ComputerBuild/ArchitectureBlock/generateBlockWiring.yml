@@ -1,6 +1,8 @@
 # here we will do the wiring of components
 # (services defined in the previous yamls)
 
+wiring_service: ~
+
 wiring:
     blocks:
         adder1_service:

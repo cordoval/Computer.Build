@@ -4,6 +4,7 @@ namespace ComputerBuild\ArchitectureBlock;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Config\Definition\Processor;
 
 use ComputerBuild\Vhdl\PortFactory;
 
@@ -13,7 +14,6 @@ use ComputerBuild\Vhdl\PortFactory;
 class ContainerExample
 {
     protected $container;
-    protected $configuration;
 
     /**
      * This class will wire 2 adders and a comparator automatically
@@ -22,15 +22,20 @@ class ContainerExample
     public function __construct()
     {
         $this->container = new ContainerBuilder();
+
+        // how to use the extension to load specific configuration ?
         $directory = __DIR__;
         $loader = new YamlFileLoader($this->container, new FileLocator($directory));
         $loader->load('serviceImplementations.yml');
         $loader->load('generatingBlockServices.yml');
 
-        $this->configuration = new Configuration();
-        // this instantiation can be automated into a yml schematic like file
+        $extensionDI = new WiringServiceExtension();
+        //var_export($extensionDI->getAlias());die;
+        $this->container->registerExtension($extensionDI);
 
-        $wiring = $this->container->get('wiring');
+        $this->container->compile();
+        // with the config configuration we can wire things
+        //$wiring = $this->container->get('wiring');
 
         /**
          *  horizontal reuse of components injected

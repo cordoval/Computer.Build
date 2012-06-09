@@ -3,6 +3,8 @@
 namespace Tests\ComputerBuild\ArchitectureBlock;
 
 use ComputerBuild\ArchitectureBlock\ContainerExample;
+use Symfony\Component\Config\Definition\Processor;
+use ComputerBuild\ArchitectureBlock\Configuration;
 
 class ContainerExampleTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,12 +30,6 @@ class ContainerExampleTest extends \PHPUnit_Framework_TestCase
     {
         $container = new ContainerExample();
 
-        $processor = new Processor();
-        $configuration = new Configuration();
-
-        $config = $processor->processConfiguration($configuration, null);
-
-        var_dump($container->getConfiguration()->getConfigTreeBuilder());
     }
 
     public function testSomethingElse()

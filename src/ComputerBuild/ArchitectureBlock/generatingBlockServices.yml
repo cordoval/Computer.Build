@@ -1,6 +1,7 @@
 parameters:
     adder.class: ComputerBuild\ArchitectureBlock\Adder
-
+    comparator.class: ComputerBuild\ArchitectureBlock\Comparator
+    port.class: ComputerBuild\Vhdl\Port
 services:
     adder1_service:
         class:            %adder.class%
