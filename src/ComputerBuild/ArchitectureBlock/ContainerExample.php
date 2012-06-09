@@ -13,6 +13,7 @@ use ComputerBuild\Vhdl\PortFactory;
 class ContainerExample
 {
     protected $container;
+    protected $configuration;
 
     /**
      * This class will wire 2 adders and a comparator automatically
@@ -22,17 +23,14 @@ class ContainerExample
     {
         $this->container = new ContainerBuilder();
         $directory = __DIR__;
-        $loader = new YamlFileLoader($container, new FileLocator($directory));
-        $loader->load('booting.yml');
+        $loader = new YamlFileLoader($this->container, new FileLocator($directory));
+        $loader->load('serviceImplementations.yml');
+        $loader->load('generatingBlockServices.yml');
 
+        $this->configuration = new Configuration();
         // this instantiation can be automated into a yml schematic like file
-        list($port1, $port2, $port3, $port4) = $this->$container->get('port.factory')->create(PortFactory::DIRECTION_IN, 4, 'in');
-        $port5 = $this->$container->get('port.factory')->create(PortFactory::DIRECTION_OUT, 1, 'out');
-        $adder1 = $this->$container->get('adder.factory')->create();
-        $adder2 = $this->$container->get('adder.factory')->create();
-        $comparator = $this->$container->get('comparator.factory')->create();
 
-        $wiring = $this->$container->get('wiring');
+        $wiring = $this->container->get('wiring');
 
         /**
          *  horizontal reuse of components injected
@@ -46,7 +44,7 @@ class ContainerExample
          *        |  |    |  |
          *       i1  i2  i3  i4
          */
-
+/*
         $wiring->buildCircuitList(
             array(
                 array($adder1 => $comparator),
@@ -58,6 +56,7 @@ class ContainerExample
                 array($comparator, $port5),
             )
         );
+*/
     }
 
     /**
@@ -68,6 +67,16 @@ class ContainerExample
     {
         $this->container->getCircuitList();
 
+    }
+
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    public function getConfiguration()
+    {
+        return $this->configuration;
     }
 
     public function generate(GeneratedOutput $out)

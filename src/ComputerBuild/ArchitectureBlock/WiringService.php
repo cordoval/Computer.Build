@@ -13,7 +13,10 @@ class WiringService
 {
     protected $circuitList;
 
-    public function getCircuitList($wire
+    public function getCircuitList()
+    {
+
+    }
 
     public function getValue($wireAddress)
     {
@@ -27,7 +30,7 @@ class WiringService
      *    -----            ------
      * @param $nonSmartWiringUserSpec
      */
-    public function buildCircuitList($nonSmartWiringUserSpec)
+    public function buildCircuitList(array $nonSmartWiringUserSpec)
     {
         foreach ($nonSmartWiringUserSpec as $left => $right) {
             // build a wire from $left to $right

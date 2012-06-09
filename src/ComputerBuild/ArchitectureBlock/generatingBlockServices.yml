@@ -1,0 +1,61 @@
+parameters:
+    adder.class: ComputerBuild\ArchitectureBlock\Adder
+
+services:
+    adder1_service:
+        class:            %adder.class%
+        factory_service:  adder.factory
+        factory_method:   create
+    adder2_service:
+        class:            %adder.class%
+        factory_service:  adder.factory
+        factory_method:   create
+    comparator1_service:
+        class:            %comparator.class%
+        factory_service:  comparator.factory
+        factory_method:   create
+
+    port1_service:
+        class:             %port.class%
+        factory_service:  port.factory
+        factory_method:   create
+        arguments:
+        - 1
+        - 1
+        - 'in1'
+
+    port2_service:
+        class:             %port.class%
+        factory_service:  port.factory
+        factory_method:   create
+        arguments:
+        - 1
+        - 1
+        - 'in2'
+
+    port3_service:
+        class:             %port.class%
+        factory_service:  port.factory
+        factory_method:   create
+        arguments:
+        - 1
+        - 1
+        - 'in3'
+
+    port4_service:
+        class:             %port.class%
+        factory_service:  port.factory
+        factory_method:   create
+        arguments:
+        - 1
+        - 1
+        - 'in4'
+
+    port5_service:
+        class:             %port.class%
+        factory_service:  port.factory
+        factory_method:   create
+        arguments:
+        - 2
+        - 1
+        - 'out1'

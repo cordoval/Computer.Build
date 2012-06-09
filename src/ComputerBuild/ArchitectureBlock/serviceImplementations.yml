@@ -2,6 +2,7 @@ parameters:
     factory.adder.class: ComputerBuild\ArchitectureBlock\AdderFactory
     factory.comparator.class: ComputerBuild\ArchitectureBlock\ComparatorFactory
     wiring.service.class: ComputerBuild\ArchitectureBlock\WiringService
+    factory.port.class: ComputerBuild\Vhdl\PortFactory
 
 services:
     adder.factory:
@@ -12,3 +13,5 @@ services:
         wireStrategy: ~
     wiring:
         class: %wiring.service.class%
+    port.factory:
+        class: %factory.port.class%

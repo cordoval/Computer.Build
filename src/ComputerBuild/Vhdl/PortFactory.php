@@ -17,6 +17,11 @@ class PortFactory
     {
         $ports = array();
         $description = "some default description";
+
+        if ($number == 1) {
+            return new Port($label, $direction, $description);
+        }
+
         for ($i = 1; $i <= $number; $i++) {
             $increment = $i;
             $ports[] = new Port($label.$increment, $direction, $description);

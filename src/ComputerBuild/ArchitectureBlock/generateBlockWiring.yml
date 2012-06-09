@@ -1,0 +1,14 @@
+# here we will do the wiring of components
+# (services defined in the previous yamls)
+
+wiring:
+    blocks:
+        adder1_service:
+            i: [ @port1_service, @port2_service ]
+            o: [ adder1_out ]
+        adder2_service:
+            i: [ @port3_service, @port4_service ]
+            o: [ adder2_out ]
+        comparator_service:
+            i: [ adder1_out, adder2_out ]
+            o: [ @port5_service ]
