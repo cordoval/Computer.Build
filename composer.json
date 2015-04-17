@@ -1,0 +1,16 @@
+{
+    "name": "computer/build",
+    "description": "computer generator",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "behat/behat": ">=2.2.2",
+        "behat/mink":  ">=1.3.2",
+        "symfony/filesystem": "dev-master"
+},
+    "config": {
+        "bin-dir": "."
+    }
+}
